@@ -1,0 +1,25 @@
+name: Quality
+
+on:
+  push:
+    branches: [main, "chore/**", "feat/**", "fix/**"]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  static-checks:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Check JavaScript syntax
+        run: node --check script.js
+      - name: Validate project structure and integrations
+        run: node scripts/validate.mjs
