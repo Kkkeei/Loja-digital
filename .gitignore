@@ -1,0 +1,20 @@
+# Sistema operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editores
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Dependências e saídas
+node_modules/
+dist/
+coverage/
+
+# Logs e arquivos temporários
+*.log
+*.tmp
+*.bak

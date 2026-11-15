@@ -24,12 +24,18 @@ function renderCart(){
 $$("[data-add]").forEach(button=>button.addEventListener("click",()=>addToCart(button.dataset.add)));
 $(".cart-button").addEventListener("click",openCart);$(".close-drawer").addEventListener("click",closeCart);$(".overlay").addEventListener("click",closeCart);
 $(".cart-items").addEventListener("click",event=>{const button=event.target.closest("[data-remove]");if(button)removeFromCart(button.dataset.remove)});
-document.addEventListener("keydown",event=>{if(event.key==="Escape"){closeCart();$(".main-nav").classList.remove("open");$(".menu-toggle").setAttribute("aria-expanded","false")}});
+document.addEventListener("keydown",event=>{
+ if(event.key!=="Escape")return;
+ const drawerOpen=$(".cart-drawer").classList.contains("open");
+ const menuOpen=$(".main-nav").classList.contains("open");
+ if(drawerOpen)closeCart();
+ if(menuOpen){$(".main-nav").classList.remove("open");$(".menu-toggle").setAttribute("aria-expanded","false");$(".menu-toggle").setAttribute("aria-label","Abrir menu");$(".menu-toggle").focus()}
+});
 $$(".filter").forEach(button=>button.addEventListener("click",()=>{$$(".filter").forEach(item=>item.classList.toggle("active",item===button));filterProducts()}));
 $("#product-search").addEventListener("input",filterProducts);
 function filterProducts(){const category=$(".filter.active").dataset.filter;const query=$("#product-search").value.trim().toLocaleLowerCase("pt-BR");let visible=0;$$(".product-card").forEach(card=>{const matchCategory=category==="todos"||card.dataset.category===category;const matchQuery=card.dataset.name.toLocaleLowerCase("pt-BR").includes(query);card.hidden=!(matchCategory&&matchQuery);if(!card.hidden)visible++});$(".empty-state").hidden=visible!==0}
 $(".menu-toggle").addEventListener("click",()=>{const nav=$(".main-nav");const isOpen=nav.classList.toggle("open");$(".menu-toggle").setAttribute("aria-expanded",String(isOpen));$(".menu-toggle").setAttribute("aria-label",isOpen?"Fechar menu":"Abrir menu")});
-$$(".nav-link").forEach(link=>link.addEventListener("click",()=>{$(".main-nav").classList.remove("open");$(".menu-toggle").setAttribute("aria-expanded","false")}));
+$$(".nav-link").forEach(link=>link.addEventListener("click",()=>{$(".main-nav").classList.remove("open");$(".menu-toggle").setAttribute("aria-expanded","false");$(".menu-toggle").setAttribute("aria-label","Abrir menu")}));
 $(".search-toggle").addEventListener("click",()=>{$("#product-search").focus();$("#colecao").scrollIntoView({behavior:"smooth"})});
 $(".checkout-button").addEventListener("click",()=>notify("Demonstração: o checkout não processa pagamentos."));
 $(".newsletter-form").addEventListener("submit",event=>{event.preventDefault();const email=$("#email").value.trim();if(email){notify("Cadastro demonstrativo recebido. Obrigado!");event.target.reset()}});

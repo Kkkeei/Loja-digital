@@ -30,6 +30,17 @@ python3 -m http.server 8080
 
 Acesse `http://localhost:8080`.
 
+## Verificar o projeto
+
+Com Node.js 20 ou superior:
+
+```bash
+node --check script.js
+node scripts/validate.mjs
+```
+
+O GitHub Actions executa as mesmas verificações em cada atualização da branch principal e em Pull Requests.
+
 ## Publicar
 
 ### GitHub Pages
@@ -45,9 +56,13 @@ Arraste a pasta do projeto para https://app.netlify.com/drop.
 
 ```text
 loja-digital/
+├── .github/workflows/quality.yml
+├── docs/PORTFOLIO.md
+├── scripts/validate.mjs
 ├── index.html
 ├── styles.css
 ├── script.js
+├── .gitignore
 └── README.md
 ```
 
@@ -55,14 +70,7 @@ loja-digital/
 
 Projeto demonstrativo de interface. Marca e produtos fictícios. O carrinho funciona apenas em memória no navegador e não persiste após recarregar a página. Checkout e newsletter são demonstrações: não processam pagamentos nem enviam dados a um servidor. As imagens são externas (Unsplash) e as fontes usam Google Fonts, portanto esses recursos dependem de conexão com a internet.
 
-## Próximas evoluções
-
-- Persistência da sacola com `localStorage`.
-- Página individual de produto.
-- Backend e API de catálogo/estoque.
-- Autenticação e painel administrativo.
-- Integração segura com gateway de pagamento.
-- Testes automatizados e imagens locais otimizadas.
+Consulte [o guia do projeto](docs/PORTFOLIO.md) para conhecer a apresentação, estrutura, verificações e limites do protótipo.
 
 ---
 
