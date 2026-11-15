@@ -16,7 +16,7 @@ function removeFromCart(id){cart.delete(id);renderCart()}
 function renderCart(){
  const count=[...cart.values()].reduce((sum,qty)=>sum+qty,0);
  const total=[...cart.entries()].reduce((sum,[id,qty])=>sum+products[id].price*qty,0);
- $$(".cart-count").forEach(el=>el.textContent=count);$(".drawer-count").textContent=`(${count})`;$ (".subtotal strong").textContent=formatPrice(total);
+ $$(".cart-count").forEach(el=>el.textContent=count);$(".drawer-count").textContent=`(${count})`;$(".subtotal strong").textContent=formatPrice(total);
  const container=$(".cart-items");
  if(!count){container.innerHTML='<p class="cart-empty">Sua sacola ainda está vazia.<br><span>Encontre algo extraordinário.</span></p>';return}
  container.innerHTML=[...cart.entries()].map(([id,qty])=>{const p=products[id];return `<div class="cart-row"><img src="${p.image}" alt=""><div><strong>${p.name}</strong><small>${qty} × ${formatPrice(p.price)}</small></div><button class="remove-item" data-remove="${id}" aria-label="Remover ${p.name}">×</button></div>`}).join("");
