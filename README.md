@@ -2,6 +2,7 @@
 
 Loja conceito responsiva para portfólio Front-end. A NOVA é uma marca fictícia de tecnologia, com direção visual premium e interações no navegador.
 
+Acesse: https://kkkeei.github.io/Loja-digital/
 ## Destaques
 
 - Landing page editorial com identidade visual própria.
